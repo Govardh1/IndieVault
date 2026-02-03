@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 import { Chicle, Poppins } from "next/font/google"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { NavbarSidebar } from "./navbar-sidebar"
+import { useState } from "react"
 
 
 const poppins=Poppins({
@@ -39,7 +41,7 @@ const navbaritems=[
 ]
 export const NavBar = ()=>{
 	const pathname=usePathname()
-  
+  const [isSideBarOpen,setisSideBarOpen]=useState(false)
 	return (
 	<nav className="h-20 flex border-b justify-between font-medium bg-white">
 		<Link href="/" className="pl-6 flex items-center">
@@ -55,6 +57,14 @@ export const NavBar = ()=>{
 				</NavBarItem>
 			))}
 		</div>
+
+		<NavbarSidebar 
+			items={navbaritems} 
+			open={isSideBarOpen} 
+			onOpenChange={setisSideBarOpen}
+		 />
+			
+	
 
 		<div className="hidden lg:flex">
 			<Button  asChild variant="secondary" className="border-l border-t-0 border-b-0 border-r-0 px-12 h-full rounded-none bg-white hover:bg-pink-500 transition-colors text-lg ">
