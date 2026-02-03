@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 
-import { Chicle, Poppins } from "next/font/google"
+import {  Poppins } from "next/font/google"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { NavbarSidebar } from "./navbar-sidebar"
 import { useState } from "react"
+import { MenuIcon } from "lucide-react"
 
 
 const poppins=Poppins({
@@ -33,11 +34,11 @@ const NavBarItem = ({href,children,isActive}:NavBarItemProps)=>{
 	)
 }
 const navbaritems=[
-	{href:"/", Children:"Home"},
-	{href:"/about", Children:"About"},
-	{href:"/features", Children:"Features"},
-	{href:"/pricing", Children:"Pricing"},
-	{href:"/contact", Children:"Contact"}
+	{href:"/", children:"Home"},
+	{href:"/about", children:"About"},
+	{href:"/features", children:"Features"},
+	{href:"/pricing", children:"Pricing"},
+	{href:"/contact", children:"Contact"}
 ]
 export const NavBar = ()=>{
 	const pathname=usePathname()
@@ -53,13 +54,13 @@ export const NavBar = ()=>{
 		<div className="items-center gap-4 hidden lg:flex">
 			{navbaritems.map((item) =>(
 				<NavBarItem key={item.href} href={item.href} isActive={pathname===item.href}>
-					{item.Children}
+					{item.children}
 				</NavBarItem>
 			))}
 		</div>
 
 		<NavbarSidebar 
-			items={navbaritems} 
+			items={navbaritems}
 			open={isSideBarOpen} 
 			onOpenChange={setisSideBarOpen}
 		 />
@@ -74,6 +75,17 @@ export const NavBar = ()=>{
 				<Link href="/sign-up">Start Selling</Link>
 			</Button>
 		</div>
+
+			<div className="flex lg:hidden items-center justify-center">
+				<Button
+				variant="ghost"
+				className="size-12 border-transparent bg-white"
+				onClick={()=>setisSideBarOpen(true)}
+				>
+					<MenuIcon/>
+				</Button>
+			</div>
+
 	</nav>
   )
 }

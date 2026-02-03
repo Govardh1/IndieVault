@@ -1,3 +1,4 @@
+import { Footer } from "./footer"
 import { NavBar } from "./navbar"
 
 
@@ -9,7 +10,10 @@ function layout({children}:props) {
   return (
 	<div className="flex flex-col min-h-screen">
 		<NavBar/>
-		{children}
+		<div className="flex-1 bg-[#f4f4f0]">
+			{children}
+		</div>
+		<Footer/>
 	</div>
   )
 }

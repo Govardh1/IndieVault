@@ -1,5 +1,7 @@
 import { Sheet,SheetContent,SheetTitle,SheetHeader } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 interface NavBarItem{
 	href:string,
 	children:React.ReactNode;
@@ -18,15 +20,42 @@ export  const NavbarSidebar=(
 )=> {
   return (
 	
-		<Sheet items={items} open={open} onOpenChange={onOpenChange}>
+		<Sheet  open={open} onOpenChange={onOpenChange}>
 			<SheetContent side="left" className="p-0 transition-none">
 				<SheetHeader className="p-4 border-b">
 					<div className="flex items-center">
 						<SheetTitle >
 							Menu
 						</SheetTitle>
+
 					</div>
 				</SheetHeader>
+				<ScrollArea className="flex flex-col overflow-y-auto pb-1">
+					{items.map((item)=>(
+						<Link key={item.href} href={item.href}
+						className=" w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium"
+						onClick={()=>onOpenChange(false)}
+						>
+							{item.children}
+						</Link>
+					))}
+					<div className=" border-t w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium">
+						
+							<Link onClick={()=>onOpenChange(false)} href="/sign-in">
+								Log in
+							</Link>
+							
+						
+					</div>
+					<div className="  w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium">
+						
+							
+							<Link onClick={()=>onOpenChange(false)} href="/sign-up">
+							Start Selling
+							</Link>
+						
+					</div>
+				</ScrollArea>
 			</SheetContent>
 		</Sheet>
 
