@@ -2,11 +2,13 @@
   "name": "indievault",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+   "generate:types": "PAYLOAD_CONFIG_PATH=./payload.config.ts bunx payload generate:types"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
