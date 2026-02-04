@@ -13,6 +13,30 @@ export const Catagories : CollectionConfig={
 			name:"name",
 			type:"text",
 			required:true,
+		},
+		{
+			name:"slug",
+			type:'text',
+			required:true,
+			unique:true,
+			index:true
+		},
+		{
+			name:"colour",
+			type:"text"
+		},
+		{
+			name:"parent",
+			type:"relationship",
+			relationTo:"catagories",
+			hasMany:false
+		},
+		{
+			name:"subcatagories",
+			type:"join",
+			collection:"catagories",
+			on:"parent",
+			hasMany:true
 		}
 	]
 }
